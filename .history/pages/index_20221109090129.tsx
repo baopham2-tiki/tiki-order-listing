@@ -1,14 +1,8 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
-import { useSelector, useDispatch } from 'react-redux';
-import { decrement, increment } from '../slices/counterSlice';
-import { RootState } from '../store';
 
 export default function Home() {
-  const count = useSelector((state: RootState) => state.counter.value);
-  const dispatch = useDispatch();
-
   return (
     <div className={styles.container}>
       <Head>
@@ -18,9 +12,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1>Value 0{count}</h1>
-        <button onClick={() => dispatch(increment())}>Increament</button>
-        <button onClick={() => dispatch(decrement())}>Decrement</button>
+        <h1>Value 0</h1>
       </main>
     </div>
   );

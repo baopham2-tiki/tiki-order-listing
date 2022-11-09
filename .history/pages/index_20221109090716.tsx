@@ -20,7 +20,7 @@ export default function Home() {
       <main className={styles.main}>
         <h1>Value 0{count}</h1>
         <button onClick={() => dispatch(increment())}>Increament</button>
-        <button onClick={() => dispatch(decrement())}>Decrement</button>
+        <button>Decreament</button>
       </main>
     </div>
   );
