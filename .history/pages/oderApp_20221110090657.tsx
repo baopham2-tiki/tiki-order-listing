@@ -121,7 +121,6 @@ export default function oderApp() {
         ></input>
         <div className="search-right">Tìm đơn hàng</div>
       </StyledInput>
-      <OderList />
     </StyledOrderApp>
   )
 }

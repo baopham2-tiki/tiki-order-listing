@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import OderList from '../components/OderList'
 
 const StyledOrderApp = styled.div`
   max-width: 950px;
@@ -86,7 +85,7 @@ export default function oderApp() {
         tab.classList.add('active')
       })
     })
-  }, [])
+  })
 
   return (
     <StyledOrderApp>
@@ -121,7 +120,6 @@ export default function oderApp() {
         ></input>
         <div className="search-right">Tìm đơn hàng</div>
       </StyledInput>
-      <OderList />
     </StyledOrderApp>
   )
 }

@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import OderList from '../components/OderList'
 
 const StyledOrderApp = styled.div`
   max-width: 950px;
@@ -74,19 +73,17 @@ export default function oderApp() {
   const [activeTab, setActiveTab] = React.useState(0)
   const [search, setSearch] = React.useState('')
 
-  useEffect(() => {
-    const activeTabs = document.querySelectorAll('.tab-pend')
-    console.log(activeTabs)
+  const activeTabs = document.querySelectorAll('.tab-pend')
+  console.log(activeTabs)
 
-    activeTabs.forEach((tab) => {
-      tab.addEventListener('click', () => {
-        activeTabs.forEach((styledOderTabs) => {
-          styledOderTabs.classList.remove('active')
-        })
-        tab.classList.add('active')
+  activeTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      activeTabs.forEach((styledOderTabs) => {
+        styledOderTabs.classList.remove('active')
       })
+      tab.classList.add('active')
     })
-  }, [])
+  })
 
   return (
     <StyledOrderApp>
@@ -121,7 +118,6 @@ export default function oderApp() {
         ></input>
         <div className="search-right">Tìm đơn hàng</div>
       </StyledInput>
-      <OderList />
     </StyledOrderApp>
   )
 }
