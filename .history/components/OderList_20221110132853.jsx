@@ -199,19 +199,19 @@ const OderList = () => {
                         </OrderHeader>
                         <OrderInfor>
                             <OderDetail>
-                                <DetailImg><img src={order.items[0].thumbnail_url}></img>
-                                    <span className="quantity">x{order.items[0].qty}</span></DetailImg>
+                                <DetailImg><img src='https://uat.tikicdn.com/cache/200x200/ts/product/ed/77/34/5ac094603998b37254d2c149d5d4f658.jpeg'></img>
+                                    <span className="quantity">x1</span></DetailImg>
                                 <ProductInfor>
-                                    <p>{order.description}</p>
-                                    <div className='store'>{order.items[0].current_seller.store.name}</div>
+                                    <p>{orders.description}</p>
+                                    <div className='store'>Tiki Trading</div>
                                 </ProductInfor>
                             </OderDetail>
-                            <PriceDetail><span>{(order.items[0].price).toLocaleString()} ₫</span></PriceDetail>
+                            <PriceDetail><span>3.100.000 ₫</span></PriceDetail>
                         </OrderInfor>
                         <OrderFooter>
                             <TotalMoney>
                                 <div className="title">Tổng tiền:</div>
-                                <div className="total">{(order.items[0].price).toLocaleString()} ₫</div>
+                                <div className="total">3.139.300 ₫</div>
                             </TotalMoney>
                             <ButtonGroup>
                                 <div>Mua lại</div>

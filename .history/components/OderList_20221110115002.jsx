@@ -1,7 +1,6 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import styled from 'styled-components'
-
+import { data } from '../store'
 const OrderList = styled.div`
     height: auto;
     overflow: auto;
@@ -93,15 +92,13 @@ const DetailImg = styled.div`
     background-size: 90%;
     background-position: center center;
     position: relative;}
-    .quantity{
+    span{
         font-size: 12px;
     line-height: 16px;
     font-weight: 400;
     color: rgb(128, 128, 137);
     text-align: center;
-    position: relative;
-    top: -31px;
-    left: 52px;
+    position: absolute;
     width: 28px;
     height: 28px;
     background-color: rgb(235, 235, 240);
@@ -183,46 +180,39 @@ display: flex;
 `
 
 const OderList = () => {
-    const orders = useSelector(state => state.orders.data);
-    console.log(orders);
 
     return (
         <OrderList>
-            {orders.map((order, index) => {
-                return (
-                    <StyledOrder>
-                        <OrderHeader>
-                            <StatusOrder>
-                                <MainStatus>Giao trước 18:00 ngày 09/11/2022</MainStatus>
-                                <p><span className='sub-status'>Đang xử lý</span> &nbsp;
-                                    <span className='sub-state'>Sẵn sàng lấy hàng | 15:54, Thứ Tư 09/11/2022</span></p></StatusOrder>
-                        </OrderHeader>
-                        <OrderInfor>
-                            <OderDetail>
-                                <DetailImg><img src={order.items[0].thumbnail_url}></img>
-                                    <span className="quantity">x{order.items[0].qty}</span></DetailImg>
-                                <ProductInfor>
-                                    <p>{order.description}</p>
-                                    <div className='store'>{order.items[0].current_seller.store.name}</div>
-                                </ProductInfor>
-                            </OderDetail>
-                            <PriceDetail><span>{(order.items[0].price).toLocaleString()} ₫</span></PriceDetail>
-                        </OrderInfor>
-                        <OrderFooter>
-                            <TotalMoney>
-                                <div className="title">Tổng tiền:</div>
-                                <div className="total">{(order.items[0].price).toLocaleString()} ₫</div>
-                            </TotalMoney>
-                            <ButtonGroup>
-                                <div>Mua lại</div>
-                                <div>Xem chi tiết</div>
-                                <div>Theo dõi đơn</div>
-                            </ButtonGroup>
-                        </OrderFooter>
-                    </StyledOrder>
-                )
-            })}
-
+            <StyledOrder>
+                <OrderHeader>
+                    <StatusOrder>
+                        <MainStatus>Giao trước 18:00 ngày 09/11/2022</MainStatus>
+                        <p><span className='sub-status'>Đang xử lý</span> &nbsp;
+                            <span className='sub-state'>Sẵn sàng lấy hàng | 15:54, Thứ Tư 09/11/2022</span></p></StatusOrder>
+                </OrderHeader>
+                <OrderInfor>
+                    <OderDetail>
+                        <DetailImg><img src='https://uat.tikicdn.com/cache/200x200/ts/product/ed/77/34/5ac094603998b37254d2c149d5d4f658.jpeg'></img>
+                            <span className="quantity">x1</span></DetailImg>
+                        <ProductInfor>
+                            <p>Máy lạnh Toshiba new - ThuPhung - 4.10.21</p>
+                            <div className='store'>Tiki Trading</div>
+                        </ProductInfor>
+                    </OderDetail>
+                    <PriceDetail><span>3.100.000 ₫</span></PriceDetail>
+                </OrderInfor>
+                <OrderFooter>
+                    <TotalMoney>
+                        <div className="title">Tổng tiền:</div>
+                        <div className="total">3.139.300 ₫</div>
+                    </TotalMoney>
+                    <ButtonGroup>
+                        <div>Mua lại</div>
+                        <div>Xem chi tiết</div>
+                        <div>Theo dõi đơn</div>
+                    </ButtonGroup>
+                </OrderFooter>
+            </StyledOrder>
         </OrderList>
     );
 };

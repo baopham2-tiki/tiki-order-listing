@@ -93,7 +93,7 @@ export default function oderApp() {
       })
       .then((response) => {
         console.log(response.data.data)
-        dispatch(getOrders(response.data.data))
+        dispatch(getOrders(response.data))
       })
       .catch((error) => {
         console.log(error)

@@ -200,10 +200,10 @@ const OderList = () => {
                         <OrderInfor>
                             <OderDetail>
                                 <DetailImg><img src={order.items[0].thumbnail_url}></img>
-                                    <span className="quantity">x{order.items[0].qty}</span></DetailImg>
+                                    <span className="quantity">x1</span></DetailImg>
                                 <ProductInfor>
                                     <p>{order.description}</p>
-                                    <div className='store'>{order.items[0].current_seller.store.name}</div>
+                                    <div className='store'>Tiki Trading</div>
                                 </ProductInfor>
                             </OderDetail>
                             <PriceDetail><span>{(order.items[0].price).toLocaleString()} ₫</span></PriceDetail>

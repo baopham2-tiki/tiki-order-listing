@@ -76,9 +76,7 @@ const StyledInput = styled.div`
 `
 export default function oderApp() {
   const [search, setSearch] = React.useState('')
-  const [dataListOrder, setDataListOrder] = React.useState([])
   const { data, error, loading } = useSelector((state: RootState) => state.orders)
-  console.log({ data })
 
   const dispatch = useDispatch()
 
@@ -92,8 +90,8 @@ export default function oderApp() {
         },
       })
       .then((response) => {
-        console.log(response.data.data)
-        dispatch(getOrders(response.data.data))
+        console.log(response.data)
+        return response.data
       })
       .catch((error) => {
         console.log(error)

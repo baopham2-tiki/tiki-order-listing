@@ -8,5 +8,8 @@ import styled from 'styled-components'
 import axios from 'axios'
 
 export default function Home() {
+  //dùng axios để gọi api 'https://api.tala.xyz/v2/orders?page=2&limit=10'
+  //và in ra console.log
+
   return <div className={styles.container}></div>
 }

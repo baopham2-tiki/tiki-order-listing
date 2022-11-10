@@ -200,18 +200,18 @@ const OderList = () => {
                         <OrderInfor>
                             <OderDetail>
                                 <DetailImg><img src={order.items[0].thumbnail_url}></img>
-                                    <span className="quantity">x{order.items[0].qty}</span></DetailImg>
+                                    <span className="quantity">x1</span></DetailImg>
                                 <ProductInfor>
                                     <p>{order.description}</p>
-                                    <div className='store'>{order.items[0].current_seller.store.name}</div>
+                                    <div className='store'>Tiki Trading</div>
                                 </ProductInfor>
                             </OderDetail>
-                            <PriceDetail><span>{(order.items[0].price).toLocaleString()} ₫</span></PriceDetail>
+                            <PriceDetail><span>{order.items[0].price} ₫</span></PriceDetail>
                         </OrderInfor>
                         <OrderFooter>
                             <TotalMoney>
                                 <div className="title">Tổng tiền:</div>
-                                <div className="total">{(order.items[0].price).toLocaleString()} ₫</div>
+                                <div className="total">3.139.300 ₫</div>
                             </TotalMoney>
                             <ButtonGroup>
                                 <div>Mua lại</div>

@@ -1,0 +1,24 @@
+import { createSlice } from '@reduxjs/toolkit';
+
+const initialState = {
+    orders: [],
+    error: null,
+    loading: false
+};
+
+
+
+export const ordersSlice = createSlice({
+    name: 'orders',
+    initialState,
+    reducers: {
+        getOrders: (state, action) => {
+            state.orders = action.payload;
+        },
+    },
+});
+
+// Action creators are generated for each case reducer function
+export const { getOrders } = ordersSlice.actions;
+
+export default ordersSlice.reducer;

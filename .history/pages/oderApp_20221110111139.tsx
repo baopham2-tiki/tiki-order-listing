@@ -76,14 +76,11 @@ const StyledInput = styled.div`
 `
 export default function oderApp() {
   const [search, setSearch] = React.useState('')
-  const [dataListOrder, setDataListOrder] = React.useState([])
   const { data, error, loading } = useSelector((state: RootState) => state.orders)
-  console.log({ data })
 
   const dispatch = useDispatch()
 
   useEffect(() => {
-    console.log('useEffect')
     axios
       .get('https://api.tala.xyz/v2/orders?page=2&limit=10', {
         headers: {
@@ -92,8 +89,7 @@ export default function oderApp() {
         },
       })
       .then((response) => {
-        console.log(response.data.data)
-        dispatch(getOrders(response.data.data))
+        return response.data
       })
       .catch((error) => {
         console.log(error)
