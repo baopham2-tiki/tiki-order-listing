@@ -1,0 +1,70 @@
+import styled from 'styled-components'
+
+export const StyledOrderApp = styled.div`
+max-width: 950px;
+margin: 0 auto;
+background-color: #f5f5fa;
+`
+export const Heading = styled.div`
+font-size: 19px;
+line-height: 21px;
+font-weight: 300;
+margin: 20px 0px 15px;
+`
+export const StyledTabs = styled.div`
+cursor: pointer;
+background: rgb(255, 255, 255);
+width: 100%;
+display: flex;
+flex-direction: row;
+overflow: hidden;
+position: sticky;
+top: 0px;
+z-index: 10;
+.tab-pend {
+  width: 16.6667%;
+  padding: 12px 0px;
+  text-align: center;
+}
+.tab-pend.active {
+  border-bottom: 2px solid rgb(13, 92, 182);
+  color: rgb(13, 92, 182);
+}
+`
+
+export const StyledInput = styled.div`
+width: 100%;
+position: relative;
+margin: 12px 0px;
+.icon-left {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+}
+.input {
+  padding-left: 40px !important;
+  transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s,
+    -webkit-box-shadow 0.15s ease-in-out 0s;
+  height: 36px;
+  width: 100%;
+  border-radius: 4px;
+  padding: 10px 12px;
+  line-height: 20px;
+  outline: none;
+  flex: 1 1 0%;
+  border: 1px solid rgb(196, 196, 207);
+}
+.search-right {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgb(11, 116, 229);
+  padding: 0px 6px 0px 16px;
+  border-left: 2px solid rgb(221, 221, 227);
+  cursor: pointer;
+}
+`
