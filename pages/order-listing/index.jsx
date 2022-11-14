@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import OderList from '../../components/OderList'
-import { getOrders, getMoreOrders } from '../../slices/orderSlice'
+import { getOrders, getMoreOrders, getOrdersError, getOrdersSuccess } from '../../slices/orderSlice'
 import { RootState } from '../../store'
 import { getOrdersAPI, getOrderBySearch } from '../../utils/orders'
 
@@ -14,36 +14,51 @@ export default function OrderListing() {
   const [text, setText] = React.useState('')
   const [status, setStatus] = React.useState()
   const [paging, setPaging] = React.useState({ page: 0, limit: 10 })
+  const [isShowMore, setIsShowMore] = React.useState(false)
   const { data, error, loading } = useSelector((state) => state.orders)
 
   const dispatch = useDispatch()
 
+  const handleUpdateData = (response) => {
+    setIsShowMore(response.data.paging.last_page > 0)
+    if (paging.page === 0) {
+      dispatch(getOrdersSuccess(response.data.data))
+    } else {
+      dispatch(getMoreSuccess(response.data.data))
+    }
+  }
+
   useEffect(() => {
-    try {
-      ;(async () => {
-        console.log(24, status)
+    ;(async () => {
+      try {
+        dispatch(getOrders())
+
         if (!text) {
           const response = await getOrdersAPI({ ...paging, status })
           console.log('axios.then', response.data.data)
-          if (paging.page === 0) {
-            dispatch(getOrders(response.data.data))
-          } else {
-            dispatch(getMoreOrders(response.data.data))
-          }
+          handleUpdateData(response)
         } else {
           const response = await getOrderBySearch({ ...paging, text, status })
-          dispatch(getOrders(response.data.data))
+          handleUpdateData(response)
         }
-      })()
-    } catch (error) {}
+      } catch (error) {
+        dispatch(getOrdersError(error))
+      }
+    })()
   }, [paging, text, status])
 
-  const handeLoading = () => {
+  const handeMore = () => {
     setPaging({ ...paging, page: paging.page + 1 })
   }
-
-  const handleSearch = () => {
+  const updateSearchText = () => {
     setText(search)
+  }
+  const resetPaging = () => {
+    setPaging({ ...paging, page: 0 })
+  }
+  const handleSearchClick = () => {
+    updateSearchText()
+    resetPaging()
   }
 
   const [tabs, setTabs] = React.useState([
@@ -92,12 +107,16 @@ export default function OrderListing() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <div className="search-right" onClick={handleSearch}>
+        <div className="search-right" onClick={handleSearchClick}>
           Tìm đơn hàng
         </div>
       </StyledInput>
       <OderList />
-      <button onClick={handeLoading}>Tải thêm</button>
+      {isShowMore ? (
+        <button className="btnLoadMore" onClick={handeMore}>
+          Tải thêm
+        </button>
+      ) : null}
     </StyledOrderApp>
   )
 }

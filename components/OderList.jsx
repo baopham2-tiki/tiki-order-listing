@@ -1,5 +1,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import Link from 'next/link'
+import EmptyPage from './empty/emptyPage'
+import ErrorPage from './errorPage'
+import LoadingPage from './loading/loading'
 import {
   OrderList,
   StyledOrder,
@@ -17,19 +21,23 @@ import {
 } from './styles/styledOderList'
 const OderList = () => {
   const orders = useSelector((state) => state.orders.data)
-  console.log(20, orders)
+  const { data, error, loading } = useSelector((state) => state.orders)
+  console.log(20, data)
 
-  //   if (error) {
-  //     return <ErrorPage />
-  //   }
+  const handleSeeDetail = (order) => {
+    console.log(22, order.id)
+  }
+  if (error) {
+    return <ErrorPage />
+  }
 
-  //   if (loading) {
-  //     return <LoadingPage />
-  //   }
+  if (loading) {
+    return <LoadingPage />
+  }
 
-  //   if (data?.length === 0) {
-  //     return <EmptyPage />
-  //   }
+  if (data?.length === 0) {
+    return <EmptyPage />
+  }
 
   return (
     <OrderList>
@@ -68,8 +76,9 @@ const OderList = () => {
                 <div className="total">{orderItem.price.toLocaleString()} ₫</div>
               </TotalMoney>
               <ButtonGroup>
-                <div>Mua lại</div>
-                <div>Xem chi tiết</div>
+                <Link className="btnSeeDetail" href={`/detail/${order.id}`}>
+                  Xem chi tiết
+                </Link>
                 <div>Theo dõi đơn</div>
               </ButtonGroup>
             </OrderFooter>

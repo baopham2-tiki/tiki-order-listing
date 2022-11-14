@@ -4,6 +4,26 @@ export const StyledOrderApp = styled.div`
   max-width: 950px;
   margin: 0 auto;
   background-color: #f5f5fa;
+  .btnLoadMore {
+    padding: 12px 8px;
+    height: 36px;
+    border-radius: 4px;
+    border: 1px solid rgb(11, 116, 229);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: rgb(11, 116, 229);
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 8px;
+    position: relative;
+    transform: translate(600%, 50%);
+    margin-bottom: 80px;
+  }
 `
 export const Heading = styled.div`
   font-size: 19px;
