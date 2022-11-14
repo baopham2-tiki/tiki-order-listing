@@ -9,7 +9,7 @@ import {
   Section,
   ProductList,
   DetailList,
-} from './stylesDetail'
+} from './styles/stylesDetail'
 
 const detail = () => {
   const details = useSelector((state) => state.orders.data)

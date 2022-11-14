@@ -4,13 +4,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import OderList from '../../components/OderList'
 import { getOrders, getMoreOrders } from '../../slices/orderSlice'
 import { RootState } from '../../store'
-import { getOrdersAPI } from '../../utils/orders'
+import { getOrdersAPI, getOrderBySearch } from '../../utils/orders'
 
 import { StyledOrderApp, Heading, StyledTabs, StyledInput } from './styles'
 import Tabs from '../../components/Tabs'
 
 export default function OrderListing() {
   const [search, setSearch] = React.useState('')
+  const [text, setText] = React.useState('')
   const [paging, setPaging] = React.useState({ page: 0, limit: 10 })
   const { data, error, loading } = useSelector((state) => state.orders)
 
@@ -19,21 +20,28 @@ export default function OrderListing() {
   useEffect(() => {
     try {
       ;(async () => {
-        const { page, limit } = paging
-        const response = await getOrdersAPI(paging)
-        console.log('axios.then', response.data.data)
-        // dispatch(getOrders(response.data.data))
-        if (page === 0) {
-          dispatch(getOrders(response.data.data))
+        if (!text) {
+          const response = await getOrdersAPI(paging)
+          console.log('axios.then', response.data.data)
+          if (paging.page === 0) {
+            dispatch(getOrders(response.data.data))
+          } else {
+            dispatch(getMoreOrders(response.data.data))
+          }
         } else {
-          dispatch(getMoreOrders(response.data.data))
+          const response = await getOrderBySearch({ ...paging, text })
+          dispatch(getOrders(response.data.data))
         }
       })()
     } catch (error) {}
-  }, [paging])
+  }, [paging, text])
 
   const handeLoading = () => {
     setPaging({ ...paging, page: paging.page + 1 })
+  }
+
+  const handleSearch = () => {
+    setText(search)
   }
 
   return (
@@ -62,7 +70,9 @@ export default function OrderListing() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <div className="search-right">Tìm đơn hàng</div>
+        <div className="search-right" onClick={handleSearch}>
+          Tìm đơn hàng
+        </div>
       </StyledInput>
       <OderList />
       <button onClick={handeLoading}>Tải thêm</button>
