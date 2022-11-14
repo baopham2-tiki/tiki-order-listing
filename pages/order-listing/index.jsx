@@ -12,6 +12,7 @@ import Tabs from '../../components/Tabs'
 export default function OrderListing() {
   const [search, setSearch] = React.useState('')
   const [text, setText] = React.useState('')
+  const [status, setStatus] = React.useState()
   const [paging, setPaging] = React.useState({ page: 0, limit: 10 })
   const { data, error, loading } = useSelector((state) => state.orders)
 
@@ -20,8 +21,9 @@ export default function OrderListing() {
   useEffect(() => {
     try {
       ;(async () => {
+        console.log(24, status)
         if (!text) {
-          const response = await getOrdersAPI(paging)
+          const response = await getOrdersAPI({ ...paging, status })
           console.log('axios.then', response.data.data)
           if (paging.page === 0) {
             dispatch(getOrders(response.data.data))
@@ -29,12 +31,12 @@ export default function OrderListing() {
             dispatch(getMoreOrders(response.data.data))
           }
         } else {
-          const response = await getOrderBySearch({ ...paging, text })
+          const response = await getOrderBySearch({ ...paging, text, status })
           dispatch(getOrders(response.data.data))
         }
       })()
     } catch (error) {}
-  }, [paging, text])
+  }, [paging, text, status])
 
   const handeLoading = () => {
     setPaging({ ...paging, page: paging.page + 1 })
@@ -44,10 +46,30 @@ export default function OrderListing() {
     setText(search)
   }
 
+  const [tabs, setTabs] = React.useState([
+    { label: 'Tất cả các đơn', active: true, code: '' },
+    { label: 'Chờ thanh toán', active: false, code: 'awaiting_payment' },
+    { label: 'Đang xử lý', active: false, code: 'processing' },
+    { label: 'Đang vận chuyển', active: false, code: 'shipping' },
+    { label: 'Đã giao', active: false, code: 'completed' },
+    { label: 'Đã huỷ', active: false, code: 'canceled' },
+  ])
+
+  const handleClick = (index) => {
+    setTabs(
+      tabs.map((tab, i) => {
+        if (i === index) {
+          setStatus(tab.code)
+          return { ...tab, active: true }
+        }
+        return { ...tab, active: false }
+      })
+    )
+  }
   return (
     <StyledOrderApp>
       <Heading>Đơn hàng của tôi</Heading>
-      <Tabs />
+      <Tabs handleClick={handleClick} tabs={tabs} />
       <StyledInput>
         <svg
           stroke="currentColor"

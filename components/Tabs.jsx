@@ -1,25 +1,8 @@
 import React, { useState } from 'react'
 import { StyledTabs } from '../pages/order-listing/styles'
-const Tabs = () => {
-  const [tabs, setTabs] = useState([
-    { label: 'Tất cả các đơn', active: true },
-    { label: 'Chờ thanh toán', active: false },
-    { label: 'Đang xử lý', active: false },
-    { label: 'Đang vận chuyển', active: false },
-    { label: 'Đã giao', active: false },
-    { label: 'Đã huỷ', active: false },
-  ])
+const Tabs = (props) => {
+  const { tabs, handleClick } = props
 
-  const handleClick = (index) => {
-    setTabs(
-      tabs.map((tab, i) => {
-        if (i === index) {
-          return { ...tab, active: true }
-        }
-        return { ...tab, active: false }
-      })
-    )
-  }
   return (
     <StyledTabs>
       {tabs.map((tab, index) => (
