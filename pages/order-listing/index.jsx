@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import OderList from '../../components/OderList'
-import { getOrders } from '../../slices/orderSlice'
+import { getOrders, getMoreOrders } from '../../slices/orderSlice'
 import { RootState } from '../../store'
 import { getOrdersAPI } from '../../utils/orders'
 
@@ -11,6 +11,7 @@ import Tabs from '../../components/Tabs'
 
 export default function OrderListing() {
   const [search, setSearch] = React.useState('')
+  const [paging, setPaging] = React.useState({ page: 0, limit: 10 })
   const { data, error, loading } = useSelector((state) => state.orders)
 
   const dispatch = useDispatch()
@@ -18,12 +19,22 @@ export default function OrderListing() {
   useEffect(() => {
     try {
       ;(async () => {
-        const response = await getOrdersAPI(status)
+        const { page, limit } = paging
+        const response = await getOrdersAPI(paging)
         console.log('axios.then', response.data.data)
-        dispatch(getOrders(response.data.data))
+        // dispatch(getOrders(response.data.data))
+        if (page === 0) {
+          dispatch(getOrders(response.data.data))
+        } else {
+          dispatch(getMoreOrders(response.data.data))
+        }
       })()
     } catch (error) {}
-  }, [])
+  }, [paging])
+
+  const handeLoading = () => {
+    setPaging({ ...paging, page: paging.page + 1 })
+  }
 
   return (
     <StyledOrderApp>
@@ -54,6 +65,7 @@ export default function OrderListing() {
         <div className="search-right">Tìm đơn hàng</div>
       </StyledInput>
       <OderList />
+      <button onClick={handeLoading}>Tải thêm</button>
     </StyledOrderApp>
   )
 }
