@@ -33,7 +33,7 @@ export const CreateDate = styled.div`
 
 export const DetailGroup = styled.div`
   display: flex;
-  margin: 10px 0px 58px;
+  margin: 10px 0px 20px;
 `
 export const DetailGroupSection = styled.div`
   width: 33.3333%;
@@ -91,6 +91,7 @@ export const ProductList = styled.div`
     border-spacing: 0px;
     line-height: 1.5;
     word-break: break-word;
+    margin-bottom: 20px;
     thead {
       display: table-header-group;
       tr {

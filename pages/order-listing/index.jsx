@@ -39,13 +39,9 @@ export default function OrderListing() {
   useEffect(() => {
     ;(async () => {
       try {
-        // dispatch(getOrders())
-        //!!
-
         if (!text) {
           const response = await getOrdersAPI({ ...paging, status })
           console.log('axios.then', response.data.data)
-          console.log(1, status)
           handleUpdateData(response)
         } else {
           const response = await getOrderBySearch({ ...paging, text, status })

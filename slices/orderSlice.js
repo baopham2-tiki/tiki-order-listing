@@ -25,14 +25,33 @@ const getOrdersReducers = {
   },
 }
 
+const getOrderDetailsReducer = {
+  getOrderDetails: (state, action) => {
+    state.details = {}
+    state.error = null
+    state.loading = true
+  },
+  getOrderDetailsSuccess: (state, action) => {
+    state.details = action.payload
+    state.error = null
+    state.loading = false
+  },
+  getOrderDetailsError: (state, action) => {
+    state.details = {}
+    state.error = action.payload
+    state.loading = false
+  },
+}
+
 export const ordersSlice = createSlice({
   name: 'orders',
   initialState,
   reducers: {
     ...getOrdersReducers,
-    getOrderDetails: (state, action) => {
-      state.details = action.payload
-    },
+    ...getOrderDetailsReducer,
+    // getOrderDetails: (state, action) => {
+    //   state.details = action.payload
+    // },
     getMoreSuccess: (state, action) => {
       state.data = [...state.data, ...action.payload]
       state.error = null
@@ -52,6 +71,8 @@ export const {
   getFilterOrders,
   getOrderDetails,
   getMoreSuccess,
+  getOrderDetailsSuccess,
+  getOrderDetailsError,
 } = ordersSlice.actions
 
 export default ordersSlice.reducer
