@@ -12,8 +12,8 @@ import {
 } from './styles/stylesDetail'
 
 const detail = () => {
-  const details = useSelector((state) => state.orders.data)
-  console.log(details)
+  const details = useSelector((state) => state.orders.details)
+  console.log(16, details)
   const detailSreet = details?.shipping_address
   const detailShipping = details?.shipping
   const detailItems = details?.items

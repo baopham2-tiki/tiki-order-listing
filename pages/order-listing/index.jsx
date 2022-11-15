@@ -2,7 +2,13 @@ import axios from 'axios'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import OderList from '../../components/OderList'
-import { getOrders, getMoreOrders, getOrdersError, getOrdersSuccess } from '../../slices/orderSlice'
+import {
+  getOrders,
+  getMoreOrders,
+  getOrdersError,
+  getOrdersSuccess,
+  getMoreSuccess,
+} from '../../slices/orderSlice'
 import { RootState } from '../../store'
 import { getOrdersAPI, getOrderBySearch } from '../../utils/orders'
 
@@ -14,6 +20,7 @@ export default function OrderListing() {
   const [text, setText] = React.useState('')
   const [status, setStatus] = React.useState()
   const [paging, setPaging] = React.useState({ page: 0, limit: 10 })
+  console.log(10, paging)
   const [isShowMore, setIsShowMore] = React.useState(false)
   const { data, error, loading } = useSelector((state) => state.orders)
 
@@ -21,6 +28,7 @@ export default function OrderListing() {
 
   const handleUpdateData = (response) => {
     setIsShowMore(response.data.paging.last_page > 0)
+    console.log(31, paging)
     if (paging.page === 0) {
       dispatch(getOrdersSuccess(response.data.data))
     } else {
@@ -31,11 +39,13 @@ export default function OrderListing() {
   useEffect(() => {
     ;(async () => {
       try {
-        dispatch(getOrders())
+        // dispatch(getOrders())
+        //!!
 
         if (!text) {
           const response = await getOrdersAPI({ ...paging, status })
           console.log('axios.then', response.data.data)
+          console.log(1, status)
           handleUpdateData(response)
         } else {
           const response = await getOrderBySearch({ ...paging, text, status })

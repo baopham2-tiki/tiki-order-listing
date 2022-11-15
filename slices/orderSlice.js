@@ -4,7 +4,7 @@ const initialState = {
   data: [],
   error: null,
   loading: false,
-  details: [],
+  details: {},
 }
 
 const getOrdersReducers = {
@@ -41,9 +41,6 @@ export const ordersSlice = createSlice({
     getFilterOrders: (state, action) => {
       state.data = action.payload
     },
-    getSeeDetails: (state, action) => {
-      state.details = action.payload
-    },
   },
 })
 
@@ -52,11 +49,9 @@ export const {
   getOrders,
   getOrdersSuccess,
   getOrdersError,
-  getMoreOrders,
   getFilterOrders,
-  getSeeDetails,
   getOrderDetails,
-  getMoreError,
+  getMoreSuccess,
 } = ordersSlice.actions
 
 export default ordersSlice.reducer
