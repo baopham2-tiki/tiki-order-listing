@@ -13,6 +13,12 @@ const getOrdersReducers = {
     state.error = null
     state.loading = true
   },
+  getLoadingTrue: (state) => {
+    state.loading = true
+  },
+  getLoadingFalse: (state) => {
+    state.loading = false
+  },
   getOrdersSuccess: (state, action) => {
     state.data = action.payload
     state.error = null
@@ -31,6 +37,7 @@ const getOrderDetailsReducer = {
     state.error = null
     state.loading = true
   },
+
   getOrderDetailsSuccess: (state, action) => {
     state.details = action.payload
     state.error = null
@@ -73,6 +80,8 @@ export const {
   getMoreSuccess,
   getOrderDetailsSuccess,
   getOrderDetailsError,
+  getLoadingTrue,
+  getLoadingFalse,
 } = ordersSlice.actions
 
 export default ordersSlice.reducer

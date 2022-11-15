@@ -14,10 +14,12 @@ import { getDetailAPI } from '../../utils/orders'
 
 export default function detailApp() {
   const router = useRouter()
-  const { orderId } = router.query
+  const { orderId, orders } = router.query
   const dispatch = useDispatch()
   useEffect(() => {
     ;(async () => {
+      //dispatch getOrderDetails
+      dispatch(getOrderDetails(orders))
       try {
         const response = await getDetailAPI({ orderId })
         dispatch(getOrderDetailsSuccess(response.data))

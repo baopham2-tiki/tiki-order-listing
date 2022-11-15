@@ -8,6 +8,8 @@ import {
   getOrdersError,
   getOrdersSuccess,
   getMoreSuccess,
+  getLoadingTrue,
+  getLoadingFalse,
 } from '../../slices/orderSlice'
 import { RootState } from '../../store'
 import { getOrdersAPI, getOrderBySearch } from '../../utils/orders'
@@ -32,6 +34,7 @@ export default function OrderListing() {
     if (paging.page === 0) {
       dispatch(getOrdersSuccess(response.data.data))
     } else {
+      dispatch(getLoadingFalse())
       dispatch(getMoreSuccess(response.data.data))
     }
   }
@@ -39,6 +42,7 @@ export default function OrderListing() {
   useEffect(() => {
     ;(async () => {
       try {
+        dispatch(getLoadingTrue())
         if (!text) {
           const response = await getOrdersAPI({ ...paging, status })
           console.log('axios.then', response.data.data)

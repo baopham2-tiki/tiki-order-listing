@@ -10,6 +10,9 @@ import {
   ProductList,
   DetailList,
 } from './styles/stylesDetail'
+import EmptyPage from './empty/emptyPage'
+import ErrorPage from './errorPage'
+import LoadingPage from './loading/loading'
 
 const detail = () => {
   const details = useSelector((state) => state.orders.details)
@@ -17,7 +20,20 @@ const detail = () => {
   const detailSreet = details?.shipping_address
   const detailShipping = details?.shipping
   const detailItems = details?.items
+  const { data, error, loading } = useSelector((state) => state.orders)
+
   console.log(detailItems)
+  if (error) {
+    return <ErrorPage />
+  }
+
+  if (loading) {
+    return <LoadingPage />
+  }
+
+  if (data === 0) {
+    return <EmptyPage />
+  }
   return (
     <Detail>
       <DetailList>
