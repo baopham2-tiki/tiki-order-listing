@@ -20,7 +20,8 @@
     "**/*.ts",
     "**/*.tsx",
     "components/OderList.jsx",
-    "pages/order-listing/index.jsx"
+    "pages/order-listing/index.jsx",
+    "pages/detail/[orderId].jsx"
   ],
   "exclude": ["node_modules"]
 }

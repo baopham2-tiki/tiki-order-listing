@@ -11,7 +11,6 @@ const getOrdersReducers = {
   getOrders: (state) => {
     state.data = []
     state.error = null
-    state.loading = true
   },
   getLoadingTrue: (state) => {
     state.loading = true
@@ -22,7 +21,6 @@ const getOrdersReducers = {
   getOrdersSuccess: (state, action) => {
     state.data = action.payload
     state.error = null
-    state.loading = false
   },
   getOrdersError: (state, action) => {
     state.data = []
@@ -32,7 +30,7 @@ const getOrdersReducers = {
 }
 
 const getOrderDetailsReducer = {
-  getOrderDetails: (state, action) => {
+  getOrderDetails: (state) => {
     state.details = {}
     state.error = null
     state.loading = true

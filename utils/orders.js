@@ -1,8 +1,9 @@
 import axios from 'axios'
+import dayjs from 'dayjs'
 
 const headers = {
   'x-access-token':
-    'eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIxMDAwODQwMDciLCJpYXQiOjE2Njg0MDQ2MDUsImV4cCI6MTY2ODU3NzQwNSwiaXNzIjoiaHR0cHM6Ly90aWtpLnZuIiwiY3VzdG9tZXJfaWQiOiIxMDAwODQwMDciLCJlbWFpbCI6ImFkbWluQHRpa2kudm4iLCJjbGllbnRfaWQiOiJ0aWtpLXNzbyIsIm5hbWUiOiIxMDAwODQwMDciLCJzY29wZSI6InNzbyJ9.SKiQYWp37fs-hG3GFQxuPTAN4kBvHO1IkQChEmJFDa7FDkTHY9CigKsevy2liLHm-sTJ9j7DGf9T6dpfXo6ZZkUsCcpiP8vDKPfGw2NUrkDvPzj8YIKSiAPmaQp2vJc5VPpWVDfamC26ORFIXIsoYa6k2m-M7BEvc3p68eDy7iOC4rMYee3adP-m_tEScd4hJ33VS_BVoInidN50TDswxJiaQO5JWMs3rgS_VsvWtIa2i67oLZgIKA39ahrL8MWcPqxAqO1kzwxNnExrfd2XHYVqLfIKUHZrkce0W7QKAP8pifljvLNrRWhfLb2BHFuUyCWB3A-aPHbqrVDGQHTIJPUIDy8lYbmubnfr8jDhhHJ256ceFROojYllxezjIWdx2hbXanuv-K17LlMrDhSqFre8SJzRaBcCdP5woOs0lSrbqjxhcqlqRyAd7vorxy-F1PApkAznKmxI5Ni8XNDyKauwpnp8-BGvBPE27x75nCi46pncYHpHr_KGUEylfbQs-Zml3c9Jxb_D9Pfb7Ne2W0naQuB2cgQNEHifdaHTjNsncIY7iOtcus1JbDWKYvXL7pYGIedkXIY0vXsRVNh6Ws3Vnpc72eURg9q2lhkC3FR6PxOIEFyG36GkbsdZDAziZ3UySTj60oZL5mEPslvBK-AkVlmPc-jOcVVp-EIyyTc',
+    'eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIxMDAwODQwMDciLCJpYXQiOjE2Njg1Njc0ODksImV4cCI6MTY2ODc0MDI4OSwiaXNzIjoiaHR0cHM6Ly90aWtpLnZuIiwiY3VzdG9tZXJfaWQiOiIxMDAwODQwMDciLCJlbWFpbCI6ImFkbWluQHRpa2kudm4iLCJjbGllbnRfaWQiOiJ0aWtpLXNzbyIsIm5hbWUiOiIxMDAwODQwMDciLCJzY29wZSI6InNzbyJ9.mWh0LdcaNmwPzc5XZe6Paq-Ttq8PIt0KjNmR2Jt6qkKp3TxVECVucne2UQtww7sP-BMgqq2U5YKU5N2Wy9tlojGZRHx7XuOYJF0IpNGcNHRSRycVsBlF6zmFRBRwjdZV9MEliMjSB8FE3fJ3s8FDguBz4NW0b0pYnxnW6wpc9KgESuCv_xJtUJ8nZhOEV4S3VUG4yBtip5CxQ331mt1qmiTMbqYEFIHY5lskcB4FyKMFJFjBFY8kdQXOFiOAvLW8c4NFZ3NbzhEPndMY9b6R9Z3VUFFLYCiM8UlsbDDR9bPT-zHSi0_3sNvqW3x_iDG97cBzedGZh6K8vY86jURhromNrWHqR52dRP3-lVX_7PE-ziwsqDwGRy14PLKdXgusMiMjlcHa5iiTNRLuPrv6NfS1lQJ349S53d1vbm45RT9ZMJOLvpUB4aSxwx6-A2U9r0KzRzsW6P6EfEZf95mCBxfGNFYPYHF6T-f8W17OqjZldmRZvETrtg1Pz_loT1hL3SPTfupfjkESr1ra7Qn9bsfF3tVS7CHOHks_V9PucAtFlVpSNeqmFyS3rY9lkRjESQ8Z92eKgnW6DujzPjGvr8QjBZnwZHW71y9r5ZkEPckyjd3M8BfUlWySKdJHJfgFdHeKFEEssAPYB5AXTPFjjlmwIVGMqH-jR2hrdZ5swPo',
 }
 export const getOrdersAPI = (params = {}) => {
   const { page = 0, limit = 10, status } = params || {}
@@ -35,5 +36,5 @@ export const getOrderBySearch = (params = {}) => {
   )
 }
 
-// export const formatDate = (date, format = 'DD/MM/YYYY') => dayjs(date).format(format)
+export const formatDate = (date, format = 'HH:mm DD/MM/YYYY') => dayjs(date * 1000).format(format)
 // //https://api.tala.xyz/v2/orders?page=${page}&limit=${limit}

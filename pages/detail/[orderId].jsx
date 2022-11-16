@@ -18,8 +18,7 @@ export default function detailApp() {
   const dispatch = useDispatch()
   useEffect(() => {
     ;(async () => {
-      //dispatch getOrderDetails
-      dispatch(getOrderDetails(orders))
+      dispatch(getOrderDetails())
       try {
         const response = await getDetailAPI({ orderId })
         dispatch(getOrderDetailsSuccess(response.data))

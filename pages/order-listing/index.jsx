@@ -16,6 +16,7 @@ import { getOrdersAPI, getOrderBySearch } from '../../utils/orders'
 
 import { StyledOrderApp, Heading, StyledTabs, StyledInput } from './styles'
 import Tabs from '../../components/Tabs'
+import Loading from '../../components/loading/loading'
 
 export default function OrderListing() {
   const [search, setSearch] = React.useState('')
@@ -32,6 +33,7 @@ export default function OrderListing() {
     setIsShowMore(response.data.paging.last_page > 0)
     console.log(31, paging)
     if (paging.page === 0) {
+      dispatch(getLoadingFalse())
       dispatch(getOrdersSuccess(response.data.data))
     } else {
       dispatch(getLoadingFalse())
@@ -122,6 +124,7 @@ export default function OrderListing() {
         </div>
       </StyledInput>
       <OderList />
+      {loading ? <Loading /> : null}
       {isShowMore ? (
         <button className="btnLoadMore" onClick={handeMore}>
           Tải thêm

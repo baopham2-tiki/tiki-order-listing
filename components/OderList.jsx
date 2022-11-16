@@ -4,6 +4,7 @@ import Link from 'next/link'
 import EmptyPage from './empty/emptyPage'
 import ErrorPage from './errorPage'
 import LoadingPage from './loading/loading'
+import { formatDate } from '../utils/orders'
 import {
   OrderList,
   StyledOrder,
@@ -31,11 +32,7 @@ const OderList = () => {
     return <ErrorPage />
   }
 
-  if (loading) {
-    return <LoadingPage />
-  }
-
-  if (data?.length === 0) {
+  if (loading === false && data?.length === 0) {
     return <EmptyPage />
   }
 
@@ -47,13 +44,23 @@ const OderList = () => {
         return (
           <StyledOrder>
             <OrderHeader>
-              <StatusOrder>
-                <MainStatus>Giao trước 18:00 ngày 09/11/2022</MainStatus>
-                <p>
-                  <span className="sub-status">Đang xử lý</span> &nbsp;
-                  <span className="sub-state">Sẵn sàng lấy hàng | 15:54, Thứ Tư 09/11/2022</span>
-                </p>
-              </StatusOrder>
+              {order.main_state === `Đã huỷ` ? (
+                <div>Pending</div>
+              ) : (
+                <StatusOrder>
+                  {order.delivery_commitment_time == null ? (
+                    <MainStatus>Giao trước {formatDate(order.created_at)}</MainStatus>
+                  ) : (
+                    <MainStatus>{order?.delivery_commitment_time?.text}</MainStatus>
+                  )}
+                  <p>
+                    <span className="sub-status">{order.main_state}</span> &nbsp;
+                    <span className="sub-state">
+                      Sẵn sàng lấy hàng | {formatDate(order.latest_status)}
+                    </span>
+                  </p>
+                </StatusOrder>
+              )}
             </OrderHeader>
             <OrderInfor>
               <OderDetail>
