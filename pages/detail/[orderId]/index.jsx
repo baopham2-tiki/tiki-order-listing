@@ -1,26 +1,30 @@
 import React, { useEffect } from 'react'
-import Detail from '../../components/detail'
+import Detail from '../../../components/detail'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../store'
+import { RootState } from '../../../store'
 import {
   getOrders,
   getOrderDetails,
   getOrderDetailsSuccess,
   getOrderDetailsError,
-} from '../../slices/orderSlice'
+} from '../../../slices/orderSlice'
 import { useRouter } from 'next/router'
-import { getDetailAPI } from '../../utils/orders'
+import { getDetailAPI as getDetailById } from '../../../utils/orders'
 
 export default function detailApp() {
   const router = useRouter()
-  const { orderId, orders } = router.query
+  const { orderId } = router.query
   const dispatch = useDispatch()
   useEffect(() => {
     ;(async () => {
       dispatch(getOrderDetails())
       try {
-        const response = await getDetailAPI({ orderId })
+        if (!orderId) {
+          return
+        }
+        const response = await getDetailById({ orderId })
+        console.log(response.data)
         dispatch(getOrderDetailsSuccess(response.data))
         console.log(30, response.data)
       } catch (error) {

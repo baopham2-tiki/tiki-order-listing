@@ -3,8 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   data: [],
   error: null,
-  loading: false,
-  details: {},
+  loading: true,
+  details: null,
 }
 
 const getOrdersReducers = {
@@ -17,6 +17,7 @@ const getOrdersReducers = {
   },
   getLoadingFalse: (state) => {
     state.loading = false
+    console.log('getLoadingFalse')
   },
   getOrdersSuccess: (state, action) => {
     state.data = action.payload
@@ -26,12 +27,13 @@ const getOrdersReducers = {
     state.data = []
     state.error = action.payload
     state.loading = false
+    console.log('getOrdersError')
   },
 }
 
 const getOrderDetailsReducer = {
   getOrderDetails: (state) => {
-    state.details = {}
+    state.details = null
     state.error = null
     state.loading = true
   },
@@ -39,12 +41,13 @@ const getOrderDetailsReducer = {
   getOrderDetailsSuccess: (state, action) => {
     state.details = action.payload
     state.error = null
-    state.loading = false
+    state.loading = true
   },
   getOrderDetailsError: (state, action) => {
-    state.details = {}
+    state.details = null
     state.error = action.payload
     state.loading = false
+    console.log('getOrderDetailsError', action.payload)
   },
 }
 
@@ -61,6 +64,7 @@ export const ordersSlice = createSlice({
       state.data = [...state.data, ...action.payload]
       state.error = null
       state.loading = false
+      console.log('getMoreSuccess')
     },
     getFilterOrders: (state, action) => {
       state.data = action.payload

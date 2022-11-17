@@ -1,15 +1,5 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import {
-  Detail,
-  HeadingDetail,
-  CreateDate,
-  DetailGroup,
-  DetailGroupSection,
-  Section,
-  ProductList,
-  DetailList,
-} from '../styles/stylesDetail'
 
 const bounceLoader = keyframes`
 to {
@@ -17,7 +7,7 @@ to {
     transform: translateY(-1rem);
   }
 `
-const BounceLoading = styled.div`
+export const BounceLoading = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -47,7 +37,7 @@ const BounceLoading = styled.div`
     }
   }
 `
-const BoxBounceLoader = styled.div`
+export const BoxBounceLoader = styled.div`
   width: 286px;
   height: 144px;
   background: #fff;
@@ -55,87 +45,14 @@ const BoxBounceLoader = styled.div`
 `
 const loadingDetail = () => {
   return (
-    <Detail>
-      <DetailList>
-        <HeadingDetail>
-          <span>Chi tiết đơn hàng</span>
-          <span className="split">-</span>
-          <span className="status">Đang xử lý</span>
-        </HeadingDetail>
-        <CreateDate>Ngày đặt hàng: </CreateDate>
-        <DetailGroup>
-          <DetailGroupSection>
-            <Section>
-              <div className="title">ĐỊA CHỈ NGƯỜI NHẬN</div>
-              <div className="content">
-                <BoxBounceLoader>
-                  <BounceLoading>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                  </BounceLoading>
-                </BoxBounceLoader>
-              </div>
-            </Section>
-          </DetailGroupSection>
-
-          <DetailGroupSection>
-            <Section>
-              <div className="title">HÌNH THỨC GIAO HÀNG</div>
-              <div className="content">
-                <BoxBounceLoader>
-                  <BounceLoading>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                  </BounceLoading>
-                </BoxBounceLoader>
-              </div>
-            </Section>
-          </DetailGroupSection>
-          <DetailGroupSection>
-            <Section>
-              <div className="title">HÌNH THỨC THANH TOÁN</div>
-              <div className="content">
-                <BoxBounceLoader>
-                  <BounceLoading>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                  </BounceLoading>
-                </BoxBounceLoader>
-              </div>
-            </Section>
-          </DetailGroupSection>
-        </DetailGroup>
-        <ProductList>
-          <table>
-            <thead>
-              <tr>
-                <th>Sản phẩm</th>
-                <th>Giá</th>
-                <th>Số lượng</th>
-                <th>Giảm giá</th>
-                <th>Tạm tính</th>
-              </tr>
-            </thead>
-            <tbody>
-              <BoxBounceLoader>
-                <BounceLoading>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </BounceLoading>
-              </BoxBounceLoader>
-            </tbody>
-          </table>
-        </ProductList>
-      </DetailList>
-    </Detail>
+    <BoxBounceLoader>
+      <BounceLoading>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </BounceLoading>
+    </BoxBounceLoader>
   )
 }
 

@@ -37,4 +37,5 @@ export const getOrderBySearch = (params = {}) => {
 }
 
 export const formatDate = (date, format = 'HH:mm DD/MM/YYYY') => dayjs(date * 1000).format(format)
-// //https://api.tala.xyz/v2/orders?page=${page}&limit=${limit}
+export const formatMoney = (money) =>
+  money?.toLocaleString('vi', { style: 'currency', currency: 'VND' })

@@ -90,7 +90,7 @@ export const ProductList = styled.div`
     border-collapse: collapse;
     border-spacing: 0px;
     line-height: 1.5;
-    word-break: break-word;
+
     margin-bottom: 20px;
     thead {
       display: table-header-group;
@@ -109,6 +109,10 @@ export const ProductList = styled.div`
           font-weight: 400;
           border-bottom: 1px solid rgb(244, 244, 244);
           text-align: left;
+          :last-child {
+            text-align: right;
+            min-width: 160px;
+          }
         }
       }
     }
@@ -118,6 +122,10 @@ export const ProductList = styled.div`
         border-bottom: 1px solid rgb(244, 244, 244);
         display: table-row;
         padding: 10px;
+        :hover {
+          background-color: rgb(246, 252, 255);
+          cursor: pointer;
+        }
         td {
           border-top: none;
           border-left: none;
@@ -128,6 +136,10 @@ export const ProductList = styled.div`
           color: rgb(36, 36, 36);
           vertical-align: top;
           min-width: 100px;
+          :last-child {
+            text-align: right;
+            min-width: 160px;
+          }
           .product-item {
             display: flex;
             img {
@@ -225,7 +237,7 @@ export const ProductList = styled.div`
             text-align: center;
             cursor: pointer;
             border: 1px solid rgb(253, 216, 53);
-            padding: 6px 12px;
+            padding: 6px 3px;
             font-size: 14px;
             border-radius: 4px;
           }
