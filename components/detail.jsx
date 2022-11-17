@@ -52,11 +52,6 @@ const detail = () => {
                   <div className="title">ĐỊA CHỈ NGƯỜI NHẬN</div>
                   <div className="content">
                     <p className="name">{details?.billing_address?.full_name}</p>
-                    {/* <p className="address">
-                    <span>Địa chỉ: </span>
-                    {detailSreet?.street}, {detailSreet?.ward}, {detailSreet?.city},{' '}
-                    {detailSreet?.region}, {detailSreet?.country}
-                  </p> */}
                     <p className="phone">
                       <span>Điện thoại: </span>
                       {details?.billing_address.telephone}
@@ -178,10 +173,10 @@ const detail = () => {
                           </div>
                         </div>
                       </td>
-                      <td className="price">{(items?.grand_total).toLocaleString()} ₫</td>
+                      <td className="price">{items?.grand_total?.toLocaleString()} ₫</td>
                       <td className="quantity">{items.qty}</td>
-                      <td className="discount-amount">{items.discount.toLocaleString()} ₫</td>
-                      <td className="raw-total">{items.subtotal.toLocaleString()} ₫</td>
+                      <td className="discount-amount">{items.discount?.toLocaleString()} ₫</td>
+                      <td className="raw-total">{items.subtotal?.toLocaleString()} ₫</td>
                     </tr>
                   </tbody>
                 )
@@ -197,7 +192,7 @@ const detail = () => {
                   <td colspan="4">
                     <span>Phí vận chuyển</span>
                   </td>
-                  <td>{details.shipping_amount} ₫</td>
+                  <td>{details.shipping_amount?.toLocaleString()} ₫</td>
                 </tr>
                 <tr>
                   <td colspan="4">

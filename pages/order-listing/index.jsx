@@ -1,22 +1,18 @@
-import axios from 'axios'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import OderList from '../../components/OderList'
 import {
   getOrders,
-  getMoreOrders,
   getOrdersError,
   getOrdersSuccess,
   getMoreSuccess,
   getLoadingTrue,
   getLoadingFalse,
 } from '../../slices/orderSlice'
-import { RootState } from '../../store'
 import { getOrdersAPI, getOrderBySearch } from '../../utils/orders'
 
 import { StyledOrderApp, Heading, StyledTabs, StyledInput } from './styles'
 import Tabs from '../../components/Tabs'
-import Loading from '../../components/loading/loading'
 
 export default function OrderListing() {
   const [search, setSearch] = React.useState('')
@@ -50,6 +46,7 @@ export default function OrderListing() {
           console.log('axios.then', response.data.data)
           handleUpdateData(response)
         } else {
+          dispatch(getOrders())
           const response = await getOrderBySearch({ ...paging, text, status })
           handleUpdateData(response)
         }
@@ -87,8 +84,11 @@ export default function OrderListing() {
       tabs.map((tab, i) => {
         if (i === index) {
           setStatus(tab.code)
+          resetPaging()
+          dispatch(getOrders())
           return { ...tab, active: true }
         }
+
         return { ...tab, active: false }
       })
     )
@@ -124,7 +124,6 @@ export default function OrderListing() {
         </div>
       </StyledInput>
       <OderList />
-      {loading ? <Loading /> : null}
       {isShowMore ? (
         <button className="btnLoadMore" onClick={handeMore}>
           Tải thêm

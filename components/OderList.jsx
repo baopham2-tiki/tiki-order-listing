@@ -5,6 +5,7 @@ import EmptyPage from './empty/emptyPage'
 import ErrorPage from './errorPage'
 import LoadingPage from './loading/loading'
 import { formatDate } from '../utils/orders'
+import Loading from './loading/loading'
 import {
   OrderList,
   StyledOrder,
@@ -44,8 +45,10 @@ const OderList = () => {
         return (
           <StyledOrder>
             <OrderHeader>
-              {order.main_state === `Đã huỷ` ? (
-                <div>Pending</div>
+              {order.main_state === `Đã hủy` ? (
+                <div color="#808089" className="styles__OrderHeader-sc-1vf2n1c-1 jSGPXD">
+                  <span className="main-status">Đã hủy</span>
+                </div>
               ) : (
                 <StatusOrder>
                   {order.delivery_commitment_time == null ? (
@@ -53,7 +56,7 @@ const OderList = () => {
                   ) : (
                     <MainStatus>{order?.delivery_commitment_time?.text}</MainStatus>
                   )}
-                  <p>
+                  <p className="sub-text">
                     <span className="sub-status">{order.main_state}</span> &nbsp;
                     <span className="sub-state">
                       Sẵn sàng lấy hàng | {formatDate(order.latest_status)}
@@ -92,6 +95,7 @@ const OderList = () => {
           </StyledOrder>
         )
       })}
+      {loading ? <Loading /> : null}
     </OrderList>
   )
 }

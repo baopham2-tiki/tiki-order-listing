@@ -29,11 +29,51 @@ export const OrderHeader = styled.div`
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
+  .styles__OrderHeader-sc-1vf2n1c-1 {
+    padding-bottom: 12px;
+    color: rgb(128, 128, 137);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    .main-status::before {
+      content: '';
+      display: block;
+      background: url('../../public/assets/block.png') center center / 20px 20px no-repeat;
+      width: 20px;
+      height: 20px;
+      float: left;
+      margin: 0px 6px 0px 0px;
+    }
+  }
 `
 
 export const StatusOrder = styled.div`
   display: flex;
   flex-direction: column;
+  .sub-text {
+    margin: 0px 0px 10px;
+    .sub-state {
+      font-weight: 300;
+      font-size: 14px !important;
+      color: rgb(128, 128, 137) !important;
+    }
+    .sub-status {
+      color: rgb(56, 56, 61);
+      font-weight: 500;
+      font-size: 14px;
+      margin-top: 4px;
+      ::before {
+        content: '';
+        display: block;
+        background: url(/_desktop-next/static/img/account/indicator.png) center center / 20px 20px
+          no-repeat;
+        width: 20px;
+        height: 20px;
+        float: left;
+        margin: 0px 6px 0px 0px;
+      }
+    }
+  }
 `
 export const MainStatus = styled.div`
   color: rgb(0, 171, 86);
@@ -46,30 +86,6 @@ export const MainStatus = styled.div`
     height: 20px;
     float: left;
     margin: 0px 6px 0px 0px;
-  }
-  .p {
-    margin: 0px 0px 10px;
-    .sub-state {
-      font-weight: 300;
-      font-size: 14px;
-      color: rgb(128, 128, 137);
-    }
-  }
-  .sub-status {
-    color: rgb(56, 56, 61);
-    font-weight: 500;
-    font-size: 14px;
-    margin-top: 4px;
-    ::before {
-      content: '';
-      display: block;
-      background: url(/_desktop-next/static/img/account/indicator.png) center center / 20px 20px
-        no-repeat;
-      width: 20px;
-      height: 20px;
-      float: left;
-      margin: 0px 6px 0px 0px;
-    }
   }
 `
 export const OrderInfor = styled.div`
