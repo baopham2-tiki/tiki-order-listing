@@ -1,10 +1,11 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import Link from 'next/link'
-import EmptyPage from './empty/emptyPage'
-import ErrorPage from './errorPage'
-import { formatDate, formatMoney } from '../utils/orders'
-import Loading from './loading/loading'
+import EmptyPage from '../empty/emptyPage'
+import ErrorPage from '../errorPage'
+import { formatDate, formatMoney } from '../../utils/orders'
+import Loading from '../loading/loading'
+
 import {
   OrderList,
   StyledOrder,
@@ -19,11 +20,12 @@ import {
   OrderFooter,
   TotalMoney,
   ButtonGroup,
-} from './styles/styledOderList'
+  OderInforPointer,
+} from '../styles/styledOderList'
 
 const OderList = () => {
   const { data, error, loading } = useSelector((state) => state.orders)
-
+  console.log(data)
   if (error) {
     return <ErrorPage />
   }
@@ -39,7 +41,30 @@ const OderList = () => {
 
         const StatusText = ({ text }) => (
           <div color="#808089" className="styles__OrderHeader-sc-1vf2n1c-1 jSGPXD">
+            <img src="./assets/block.png" />
             <span className="main-status">{text}</span>
+          </div>
+        )
+
+        const StatusWaitingPayment = ({ text }) => (
+          <div color="#FF9F41" className="styles__imCNgm">
+            <span class="main-status">{text}</span>
+          </div>
+        )
+
+        const StatusWaitForConfirmation = ({ text, time }) => (
+          <div className="waitting_confirm">
+            {' '}
+            <MainStatus>{time || ''}</MainStatus>
+            <div color="#808089" className="styles__jSGPXD">
+              <span className="main-status">{text}</span>
+            </div>
+          </div>
+        )
+
+        const StatusDeliverySuccess = ({ text }) => (
+          <div color="#808089" className="styles__hBDqMZ">
+            <span class="main-status">{text}</span>
           </div>
         )
 
@@ -48,6 +73,13 @@ const OderList = () => {
             <OrderHeader>
               {order?.main_state === `Đã hủy` ? (
                 <StatusText text="Đã hủy" />
+              ) : order?.main_state === `Chờ xác nhận` ? (
+                <StatusWaitForConfirmation
+                  text="Chờ xác nhận"
+                  time={order?.delivery_commitment_time?.text}
+                />
+              ) : order?.main_state === `Giao hàng thành công` ? (
+                <StatusDeliverySuccess text="Giao hàng thành công" />
               ) : (
                 <StatusOrder>
                   {!order.delivery_commitment_time == null ? (
@@ -64,31 +96,36 @@ const OderList = () => {
                 </StatusOrder>
               )}
             </OrderHeader>
-            <OrderInfor>
-              <OderDetail>
-                <DetailImg>
-                  <img src={orderItem?.thumbnail_url}></img>
-                  <span className="quantity">x{orderItem?.qty}</span>
-                </DetailImg>
-                <ProductInfor>
-                  <p>{order?.description}</p>
-                  <div className="store">{orderItem?.current_seller?.store?.name}</div>
-                </ProductInfor>
-              </OderDetail>
-              <PriceDetail>
-                <span>{formatMoney(orderItem?.price)}</span>
-              </PriceDetail>
-            </OrderInfor>
+            <OderInforPointer>
+              <div>
+                <OrderInfor>
+                  <OderDetail>
+                    <DetailImg>
+                      <img src={orderItem?.thumbnail_url}></img>
+                    </DetailImg>
+                    <span className="quantity">x{orderItem?.qty}</span>
+                    <ProductInfor>
+                      <p>{order?.description}</p>
+                      <div className="store">{orderItem?.current_seller?.store?.name}</div>
+                    </ProductInfor>
+                  </OderDetail>
+                  <PriceDetail>
+                    <span>{formatMoney(orderItem?.price)}</span>
+                  </PriceDetail>
+                </OrderInfor>
+              </div>
+            </OderInforPointer>
             <OrderFooter>
               <TotalMoney>
                 <div className="title">Tổng tiền:</div>
                 <div className="total">{formatMoney(orderItem?.price)}</div>
               </TotalMoney>
               <ButtonGroup>
+                <div>Mua lại</div>
                 <Link className="btnSeeDetail" href={`/detail/${order?.id}`}>
                   Xem chi tiết
                 </Link>
-                <div>Theo dõi đơn</div>
+                {order?.main_state === `Đã hủy` ? null : <div>Theo dõi đơn</div>}
               </ButtonGroup>
             </OrderFooter>
           </StyledOrder>

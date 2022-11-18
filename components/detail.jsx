@@ -151,8 +151,8 @@ const detail = () => {
                       </td>
                       <td className="price">{formatMoney(items?.grand_total)}</td>
                       <td className="quantity">{items.qty}</td>
-                      <td className="discount-amount">{formatMoney(items.discount)}</td>
-                      <td className="raw-total">{formatMoney(items.subtotal)}</td>
+                      <td className="discount-amount">{formatMoney(items?.discount)}</td>
+                      <td className="raw-total">{formatMoney(items?.subtotal)}</td>
                     </tr>
                   )
                 })

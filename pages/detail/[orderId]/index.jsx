@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react'
 import Detail from '../../../components/detail'
 import axios from 'axios'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../../store'
+import { useDispatch } from 'react-redux'
+
 import {
-  getOrders,
   getOrderDetails,
   getOrderDetailsSuccess,
   getOrderDetailsError,

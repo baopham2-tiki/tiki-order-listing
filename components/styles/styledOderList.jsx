@@ -16,26 +16,66 @@ export const OrderList = styled.div`
   overflow: hidden;
 `
 export const StyledOrder = styled.div`
-    background: rgb(255, 255, 255);
-    border-radius: 4px
-    font-size: 13px;
-    margin-bottom: 20px;
-    padding: 16px;
-    
+  background: rgb(255, 255, 255);
+  border-radius: 4px;
+  font-size: 13px;
+  margin-bottom: 20px;
+  padding: 16px;
 `
 export const OrderHeader = styled.div`
   border-bottom: 1px solid rgb(235, 235, 240);
   padding-bottom: 12px;
+  color: rgb(128, 128, 137);
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
-  .styles__OrderHeader-sc-1vf2n1c-1 {
-    padding-bottom: 12px;
+  .waitting_confirm {
+    display: flex;
+    flex-direction: column;
+  }
+  .styles__hBDqMZ {
     color: rgb(128, 128, 137);
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
-    .main-status::before {
+    ::before {
+      content: '';
+      display: block;
+      background: url(./assets/delivery_done.png) center center / 20px 20px no-repeat;
+      width: 20px;
+      height: 20px;
+      float: left;
+      margin: 0px 6px 0px 0px;
+    }
+  }
+  .styles__jSGPXD {
+    color: rgb(56, 56, 61);
+    font-weight: 500;
+    font-size: 14px;
+    margin-top: 4px;
+    ::before {
+      content: '';
+      display: block;
+      background: url(./assets/indicator.png) center center / 20px 20px no-repeat;
+      width: 20px;
+      height: 20px;
+      float: left;
+      margin: 0px 6px 0px 0px;
+    }
+  }
+  .styles__imCNgm {
+    border-bottom: 1px solid rgb(235, 235, 240);
+    padding-bottom: 12px;
+    color: rgb(255, 159, 65);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+  }
+  .styles__OrderHeader-sc-1vf2n1c-1 {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    img {
       content: '';
       display: block;
       background: url('../../public/assets/block.png') center center / 20px 20px no-repeat;
@@ -65,8 +105,7 @@ export const StatusOrder = styled.div`
       ::before {
         content: '';
         display: block;
-        background: url(/_desktop-next/static/img/account/indicator.png) center center / 20px 20px
-          no-repeat;
+        background: url(./assets/indicator.png) center center / 20px 20px no-repeat;
         width: 20px;
         height: 20px;
         float: left;
@@ -80,13 +119,15 @@ export const MainStatus = styled.div`
   ::before {
     content: '';
     display: block;
-    background: url(/_desktop-next/static/img/account/delivery.png) center center / 20px 20px
-      no-repeat;
+    background: url(./assets/delivery.png) center center / 20px 20px no-repeat;
     width: 20px;
     height: 20px;
     float: left;
     margin: 0px 6px 0px 0px;
   }
+`
+export const OderInforPointer = styled.div`
+  cursor: pointer;
 `
 export const OrderInfor = styled.div`
   display: flex;
@@ -98,6 +139,27 @@ export const OrderInfor = styled.div`
 `
 export const OderDetail = styled.div`
   display: flex;
+  .quantity {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 400;
+    color: rgb(128, 128, 137);
+    text-align: center;
+    position: relative;
+    top: 52px;
+    left: -28px;
+    width: 28px;
+    height: 28px;
+    background-color: rgb(235, 235, 240);
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    right: 0px;
+    bottom: 0px;
+    border-top-left-radius: 10px;
+  }
 `
 export const DetailImg = styled.div`
   img {
@@ -110,27 +172,6 @@ export const DetailImg = styled.div`
     background-size: 90%;
     background-position: center center;
     position: relative;
-  }
-  .quantity {
-    font-size: 12px;
-    line-height: 16px;
-    font-weight: 400;
-    color: rgb(128, 128, 137);
-    text-align: center;
-    position: relative;
-    top: -31px;
-    left: 52px;
-    width: 28px;
-    height: 28px;
-    background-color: rgb(235, 235, 240);
-    display: flex;
-    -webkit-box-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    align-items: center;
-    right: 0px;
-    bottom: 0px;
-    border-top-left-radius: 10px;
   }
 `
 

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import OrderList from '../../components/OderList'
+import OrderList from '../../components/order-list/OderList'
 import {
   getOrders,
   getOrdersError,
@@ -46,7 +46,7 @@ export default function OrderListing() {
     setShowMoreBtn(hasLastPage)
     const isFirstPage = paging.page === 0 // đặt biến cho các toán tử dieu kiện & so sanh
     if (isFirstPage) {
-      dispatch(getOrdersSuccess(data.data))
+      dispatch(getOrdersSuccess(data.data)) // seft-comment code
     } else {
       dispatch(getMoreSuccess(data.data))
     }
@@ -102,6 +102,7 @@ export default function OrderListing() {
       tabs.map((tab, i) => {
         if (i === index) {
           setStatus(tab.code)
+          console.log(tab.code)
           resetPaging()
           dispatch(getOrders())
           return { ...tab, active: true }

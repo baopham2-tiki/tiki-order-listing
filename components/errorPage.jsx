@@ -1,7 +1,12 @@
 import React from 'react'
 
 const ErrorPage = () => {
-  return <div>ErrorPage</div>
+  return (
+    <div>
+      helo
+      <img src="./assets/Error.png" />
+    </div>
+  )
 }
 
 export default ErrorPage

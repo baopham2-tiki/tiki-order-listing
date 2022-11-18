@@ -19,7 +19,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "components/OderList.jsx",
+    "components/order-list/OderList.jsx",
     "pages/order-listing/index.jsx",
     "pages/detail/[orderId]/index.jsx"
   ],
