@@ -4,8 +4,6 @@ import Link from 'next/link'
 import EmptyPage from '../empty/emptyPage'
 import ErrorPage from '../errorPage'
 import { formatDate, formatMoney } from '../../utils/orders'
-import Loading from '../loading/loading'
-// import LoadingSkeleton from '../loading/loadingSkeleton'
 import LoadingOrderList from '../loading/loadingOrderList'
 
 import {

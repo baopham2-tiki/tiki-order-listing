@@ -34,7 +34,7 @@ const detail = () => {
         <HeadingDetail>
           <span>Chi tiết đơn hàng #{details?.id}</span>
           <span className="split">-</span>
-          <span className="status">Đang xử lý</span>
+          <span className="status">{details?.main_state}</span>
         </HeadingDetail>
         <CreateDate>Ngày đặt hàng: {formatDate(details?.created_at)}</CreateDate>
         <DetailGroup>
