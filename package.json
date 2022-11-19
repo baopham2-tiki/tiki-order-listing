@@ -11,7 +11,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
-    "@mui/material": "^5.10.13",
+    "@mui/material": "^5.10.14",
     "@reduxjs/toolkit": "^1.9.0",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
@@ -25,6 +25,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-headless-tabs": "^6.0.2",
+    "react-loading-skeleton": "^3.1.0",
     "react-redux": "^8.0.5",
     "react-swipeable": "^7.0.0",
     "react-swipeable-views-react-18-fix": "^0.14.1",

@@ -32,6 +32,12 @@ export const OrderHeader = styled.div`
   .waitting_confirm {
     display: flex;
     flex-direction: column;
+    .sub-state {
+      font-weight: 300;
+      font-size: 14px !important;
+      color: rgb(128, 128, 137) !important;
+      margin-left: 10px;
+    }
   }
   .styles__hBDqMZ {
     color: rgb(128, 128, 137);
@@ -176,7 +182,7 @@ export const DetailImg = styled.div`
 `
 
 export const ProductInfor = styled.div`
-  margin: 0px 12px;
+  margin: 0px -14px;
   display: flex;
   flex-direction: column;
   p {

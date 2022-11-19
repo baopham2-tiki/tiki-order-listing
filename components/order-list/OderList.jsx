@@ -5,6 +5,8 @@ import EmptyPage from '../empty/emptyPage'
 import ErrorPage from '../errorPage'
 import { formatDate, formatMoney } from '../../utils/orders'
 import Loading from '../loading/loading'
+// import LoadingSkeleton from '../loading/loadingSkeleton'
+import LoadingOrderList from '../loading/loadingOrderList'
 
 import {
   OrderList,
@@ -52,12 +54,13 @@ const OderList = () => {
           </div>
         )
 
-        const StatusWaitForConfirmation = ({ text, time }) => (
+        const StatusWaitForConfirmation = ({ text, time, status }) => (
           <div className="waitting_confirm">
             {' '}
-            <MainStatus>{time || ''}</MainStatus>
+            {!time ? null : <MainStatus>{time || ''}</MainStatus>}
             <div color="#808089" className="styles__jSGPXD">
               <span className="main-status">{text}</span>
+              <span className="sub-state">Sẵn sàng lấy hàng | {status}</span>
             </div>
           </div>
         )
@@ -77,6 +80,7 @@ const OderList = () => {
                 <StatusWaitForConfirmation
                   text="Chờ xác nhận"
                   time={order?.delivery_commitment_time?.text}
+                  status={formatDate(order?.latest_status)}
                 />
               ) : order?.main_state === `Giao hàng thành công` ? (
                 <StatusDeliverySuccess text="Giao hàng thành công" />
@@ -118,7 +122,7 @@ const OderList = () => {
             <OrderFooter>
               <TotalMoney>
                 <div className="title">Tổng tiền:</div>
-                <div className="total">{formatMoney(orderItem?.price)}</div>
+                <div className="total">{formatMoney(order?.grand_total)}</div>
               </TotalMoney>
               <ButtonGroup>
                 <div>Mua lại</div>
@@ -131,7 +135,7 @@ const OderList = () => {
           </StyledOrder>
         )
       })}
-      {loading ? <Loading /> : null}
+      {loading ? <LoadingOrderList /> : null}
     </OrderList>
   )
 }

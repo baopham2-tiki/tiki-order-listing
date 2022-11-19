@@ -38,7 +38,7 @@ export const BounceLoading = styled.div`
   }
 `
 export const BoxBounceLoader = styled.div`
-  width: 286px;
+  width: 284px;
   height: 144px;
   background: #fff;
   position: relative;

@@ -1,5 +1,7 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
+// import skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+// import ContentLoader from 'react-content-loader'
 
 const bounceLoader = keyframes`
 to {
@@ -7,7 +9,7 @@ to {
     transform: translateY(-1rem);
   }
 `
-const BounceLoading = styled.div`
+export const BounceLoading = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -37,12 +39,13 @@ const BounceLoading = styled.div`
     }
   }
 `
-const BoxBounceLoader = styled.div`
+export const BoxBounceLoader = styled.div`
   width: 950px;
   height: 300px;
   background: #fff;
   position: relative;
 `
+
 const loading = () => {
   return (
     <BoxBounceLoader>
