@@ -100,21 +100,23 @@ const OderList = () => {
             </OrderHeader>
             <OderInforPointer>
               <div>
-                <OrderInfor>
-                  <OderDetail>
-                    <DetailImg>
-                      <img src={orderItem?.thumbnail_url}></img>
-                    </DetailImg>
-                    <span className="quantity">x{orderItem?.qty}</span>
-                    <ProductInfor>
-                      <p>{order?.description}</p>
-                      <div className="store">{orderItem?.current_seller?.store?.name}</div>
-                    </ProductInfor>
-                  </OderDetail>
-                  <PriceDetail>
-                    <span>{formatMoney(orderItem?.price)}</span>
-                  </PriceDetail>
-                </OrderInfor>
+                <Link href={`/detail/${order?.id}`}>
+                  <OrderInfor>
+                    <OderDetail>
+                      <DetailImg>
+                        <img src={orderItem?.thumbnail_url}></img>
+                      </DetailImg>
+                      <span className="quantity">x{orderItem?.qty}</span>
+                      <ProductInfor>
+                        <p>{order?.description}</p>
+                        <div className="store">{orderItem?.current_seller?.store?.name}</div>
+                      </ProductInfor>
+                    </OderDetail>
+                    <PriceDetail>
+                      <span>{formatMoney(orderItem?.price)}</span>
+                    </PriceDetail>
+                  </OrderInfor>
+                </Link>
               </div>
             </OderInforPointer>
             <OrderFooter>

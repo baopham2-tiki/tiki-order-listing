@@ -3,7 +3,6 @@ import styled from 'styled-components'
 export const StyledOrderApp = styled.div`
   max-width: 950px;
   margin: 0 auto;
-  background-color: #f5f5fa;
   .btnLoadMore {
     padding: 12px 8px;
     height: 36px;
