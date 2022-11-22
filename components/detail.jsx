@@ -101,6 +101,9 @@ const detail = () => {
               ) : (
                 <div className="content">
                   <p>{details?.payment?.method_text}</p>
+                  <p>{details?.payment?.description}</p>
+                  <p>Số thẻ:{details?.payment?.cc_last4}</p>
+                  <p>{details?.payment?.user_ip}</p>
                 </div>
               )}
             </Section>

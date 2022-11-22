@@ -34,6 +34,9 @@ export default function OrderListing() {
   const [search, setSearch] = React.useState('')
   const [text, setText] = React.useState('')
   const [status, setStatus] = React.useState()
+  // const [state, setState] = React.useState({search:[], text:''})
+  // const {search,text}=state
+  // setState({text:''})
   const [paging, setPaging] = React.useState({ page: 0, limit: 10 })
 
   const [isShowMore, setShowMoreBtn] = React.useState(false)
@@ -105,6 +108,7 @@ export default function OrderListing() {
           console.log(tab.code)
           resetPaging()
           dispatch(getOrders())
+
           return { ...tab, active: true }
         }
 

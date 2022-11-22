@@ -47,7 +47,7 @@ export const OrderHeader = styled.div`
     ::before {
       content: '';
       display: block;
-      background: url(./assets/delivery_done.png) center center / 20px 20px no-repeat;
+      background: url(./public/assets/delivery_done.png) center center / 20px 20px no-repeat;
       width: 20px;
       height: 20px;
       float: left;
